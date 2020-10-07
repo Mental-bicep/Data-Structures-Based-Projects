@@ -4,8 +4,8 @@ pen = canvas.getContext("2d");
 // pen.fillRect(0, 0, 15.5, 10);
 function init() {
 
-    h = canvas.style.height;
-    w = canvas.style.width;
+    h = canvas.height;
+    w = canvas.width;
     cs = 8;
     class snake {
 
