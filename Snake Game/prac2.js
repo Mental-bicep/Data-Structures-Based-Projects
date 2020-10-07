@@ -6,24 +6,30 @@ function init() {
 
     h = canvas.style.height;
     w = canvas.style.width;
-    cs = 15;
-    snake = {
-        len: 5,
-        color: "red",
-        cells: [],
-        direction: "right",
-        createSnake: () => {
+    cs = 8;
+    class snake {
+
+        constructor() {
+            this.len = 5;
+            this.color = "red";
+            this.cells = [];
+            this.direction = "right";
+        }
+
+        createSnake() {
             console.log("running createSnake func.")
             for (var i = this.len; i > 0; i--)
                 this.cells.push({ x: i, y: 0 });
-        },
-        drawSnake: () => {
+        }
+
+        drawSnake() {
             for (var i = 0; i < this.cells.length; i++) {
                 pen.fillStyle = this.color;
-                pen.fillRect(this.cells[i].x * cs, this.cells[i].y * cs, cs, cs);
+                pen.fillRect(this.cells[i].x * cs, this.cells[i].y * cs, 2 * cs - .9, cs - .9);
             }
-        },
-        updateSnake: () => {
+        }
+
+        updateSnake() {
             var headx = this.cells[0].x;
             var heady = this.cells[0].y;
             this.cells.pop();
@@ -47,10 +53,11 @@ function init() {
                 nexty = heady - 1; nextx = headx;
                 this.cells.unshift({ nextx, nexty });
             }
-        },
-    };
+        }
+    }
 
-    snake.createSnake();
+    snk = new snake();
+    snk.createSnake();
     function keyPress(e) {
         if (e.key == "ArrowRight") {
             this.direction = "right";
@@ -71,17 +78,17 @@ function init() {
 
 function draw() {
     pen.clearRect(0, 0, w, h);
-    snake.drawSnake();
+    snk.drawSnake();
 
 }
 
 function update() {
-    snake.updateSnake();
+    snk.updateSnake();
 }
 function gameLoop() {
     draw();
     update();
 }
 init();
-for (let i = 0; i < snake.len; i++) console.log(snake.cells[i]);
+// for (let i = 0; i < snake.len; i++) console.log(snake.cells[i]);
 var f = setInterval(gameLoop, 100);
