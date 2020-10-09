@@ -6,7 +6,8 @@ function init() {
 
     h = canvas.height;
     w = canvas.width;
-    cs = 8;
+    hcs = 15;
+    vcs=10;
     class snake {
 
         constructor() {
